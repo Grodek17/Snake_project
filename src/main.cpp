@@ -5,10 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-extern "C" {
-#include"./SDL2-2.0.10/include/SDL.h"
-#include"./SDL2-2.0.10/include/SDL_main.h"
-}
+#include <SDL2/SDL.h>
 
 #define MAX_SNAKE_SIZE 320
 #define SCREEN_WIDTH	600
@@ -366,14 +363,14 @@ void moveSnake(worm* SNAKE, dot* BLUE)
 
 void initaializeSnake(worm* SNAKE)
 {		
-	SNAKE->snaker = SDL_LoadBMP("./snaker.bmp");		
-	SNAKE->lil_snake = SDL_LoadBMP("./lil_snake.bmp");
-	SNAKE->left_head = SDL_LoadBMP("./head_left.bmp");
-	SNAKE->right_head = SDL_LoadBMP("./head_right.bmp");
-	SNAKE->up_head = SDL_LoadBMP("./head_up.bmp");
-	SNAKE->down_head = SDL_LoadBMP("./head_down.bmp");
-	SNAKE->tail = SDL_LoadBMP("./tail.bmp");
-	SNAKE->lil_tail = SDL_LoadBMP("./lil_tail.bmp");
+	SNAKE->snaker = SDL_LoadBMP("assets/snaker.bmp");		
+	SNAKE->lil_snake = SDL_LoadBMP("assets/lil_snake.bmp");
+	SNAKE->left_head = SDL_LoadBMP("assets/head_left.bmp");
+	SNAKE->right_head = SDL_LoadBMP("assets/head_right.bmp");
+	SNAKE->up_head = SDL_LoadBMP("assets/head_up.bmp");
+	SNAKE->down_head = SDL_LoadBMP("assets/head_down.bmp");
+	SNAKE->tail = SDL_LoadBMP("assets/tail.bmp");
+	SNAKE->lil_tail = SDL_LoadBMP("assets/lil_tail.bmp");
 	SNAKE->x[0] = 375;
 	SNAKE->y[0] = 400;
 	SNAKE->dir = 'd';
@@ -404,7 +401,7 @@ void initializeGame(sdl* GAME)
 		0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
 
 	// loading cs8x8.bmp
-	GAME->charset = SDL_LoadBMP("./cs8x8.bmp");
+	GAME->charset = SDL_LoadBMP("assets/cs8x8.bmp");
 	if (GAME->charset == NULL) {
 		printf("SDL_LoadBMP(cs8x8.bmp) error: %s\n", SDL_GetError());
 		SDL_FreeSurface(GAME->screen);
@@ -594,8 +591,8 @@ void fillScreen(sdl* GAME, colors* COLOR)
 void initializeBlueDot(dot* BLUE)
 {
 	srand(time(NULL));										
-	BLUE->blue = SDL_LoadBMP("./blue.bmp");
-	BLUE->lil_blue = SDL_LoadBMP("./lil_blue.bmp");
+	BLUE->blue = SDL_LoadBMP("assets/blue.bmp");
+	BLUE->lil_blue = SDL_LoadBMP("assets/lil_blue.bmp");
 	BLUE->eaten = 1;										//checks if snake "eaten" the dot, 1 to generate new dot at the beggining
 }
 
@@ -654,8 +651,8 @@ void handleBlueDot(dot* BLUE, worm* SNAKE, sdl* GAME, game *GAMEDATA)
 
 void initializeRedDot(bonus* RED, game* GAMEDATA)		//PLACE THIS IN INIT EVERYTHING, 
 {
-	RED->red = SDL_LoadBMP("./red.bmp");
-	RED->lil_red = SDL_LoadBMP("./lil_red.bmp");
+	RED->red = SDL_LoadBMP("assets/red.bmp");
+	RED->lil_red = SDL_LoadBMP("assets/lil_red.bmp");
 	GAMEDATA->redDotWorldTime = 0;
 	GAMEDATA->redDotCountdown = RED_DOT_MINIMAL_INTERVAL + rand() % RED_DOT_CHANCE;
 	RED->onScreen = 0;
